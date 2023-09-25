@@ -33,8 +33,6 @@ kaggle
 # IDE packages
 ipywidgets
 jupyterlab
-jupyterlab-lsp
-jupyterlab-lsp-python
 jupyterlab-git
 jupyterlab-github
 jupyterlab-spreadsheet-editor
