@@ -7,6 +7,9 @@ LABEL org.opencontainers.image.source="https://github.com/rmrschub/aetna-jupyter
 ENV CUDA_VISIBLE_DEVICES=""
 ENV NVIDIA_VISIBLE_DEVICE=""
 
+ENV JUPYTER_PORT=8888
+EXPOSE $JUPYTER_PORT
+
 # User setup
 ARG NB_USER
 ARG NB_GROUP
@@ -70,7 +73,7 @@ RUN set -x; \
     rm /tmp/kubectl.sha256; \
     chmod +x /usr/local/bin/kubectl; 
 
-# Install python packages from requirements.txt
+# Install Python3
 ENV DEBIAN_FRONTEND="noninteractive" 
 ENV TZ="Europe/Berlin"
 RUN set -ex; \
@@ -85,15 +88,13 @@ RUN set -ex; \
     python3 -m pip install --upgrade pip; \
     pip --version;
 
+# Set default user
+USER $NB_USER
+
+# Install python packages from requirements.txt
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt; \
     rm -f /tmp/requirements.txt;  
-
-ENV JUPYTER_PORT=8888
-EXPOSE $JUPYTER_PORT
-
-# Set default user
-USER $NB_USER
 
 ENTRYPOINT ["/bin/bash"]
 #CMD jupyter-lab --no-browser --port=8888 --ip='*' --NotebookApp.token='' --NotebookApp.password=''
