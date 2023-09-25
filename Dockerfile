@@ -88,13 +88,13 @@ RUN set -ex; \
     python3 -m pip install --upgrade pip; \
     pip --version;
 
-# Set default user
-USER $NB_USER
-
 # Install python packages from requirements.txt
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt; \
     rm -f /tmp/requirements.txt;  
+
+# Set default user
+USER $NB_USER
 
 ENTRYPOINT ["/bin/bash"]
 #CMD jupyter-lab --no-browser --port=8888 --ip='*' --NotebookApp.token='' --NotebookApp.password=''
