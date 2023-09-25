@@ -95,4 +95,4 @@ EXPOSE $JUPYTER_PORT
 # Set default user
 USER $NB_USER
 
-RUN jupyter-lab --no-browser --port=8888 --ip='*' --NotebookApp.token='' --NotebookApp.password=''
+CMD jupyter-lab --no-browser --port=8888 --ip='*' --NotebookApp.token='' --NotebookApp.password=''
