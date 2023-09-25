@@ -89,7 +89,10 @@ COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt; \
     rm -f /tmp/requirements.txt;  
 
+ENV JUPYTER_PORT=8888
+EXPOSE $JUPYTER_PORT
+
 # Set default user
 USER $NB_USER
 
-CMD [ "start-notebook.sh", "--no-browser", "--ip=0.0.0.0", ]
+ENTRYPOINT ["jupyter", "lab","--ip=0.0.0.0"]
