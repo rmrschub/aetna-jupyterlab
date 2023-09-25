@@ -95,4 +95,4 @@ EXPOSE $JUPYTER_PORT
 # Set default user
 USER $NB_USER
 
-ENTRYPOINT ["jupyter", "lab","--ip=0.0.0.0"]
+RUN jupyter-lab --no-browser --port=8888
