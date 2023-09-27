@@ -96,5 +96,4 @@ RUN pip install -r /tmp/requirements.txt \
 # Set default user
 USER $NB_USER
 
-ENTRYPOINT ["/bin/bash"]
-#CMD jupyter-lab --no-browser --port=8888 --ip='*' --NotebookApp.token='' --NotebookApp.password=''
+CMD jupyter-lab --no-browser --port=8888 --ip='*' --NotebookApp.token='' --NotebookApp.password=''
